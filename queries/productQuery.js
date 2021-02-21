@@ -8,13 +8,17 @@ const typeDefs = gql`
 
   type Product {
       productName :String,
-      productDesc :String
+      productDesc :String,
+      productTags :[String],
+      productPrice:String,
+      productRating : String,
+      categoryId : ID
   }
 
   type Mutation{
-     addProduct(productName:String,productDesc:String) : Product
+     addProduct(productName:String,productDesc:String,productTags:[String],productPrice:String,productRating:String, categoryId:ID) : Product
      deleteProduct(productId:ID) : Product
-     updateProduct(productId:ID,productName:String,productDesc:String) :Product
+     updateProduct(productId:ID,productName:String,productDesc:String,productTags:[String],productPrice:String,productRating:String,categoryId:ID) :Product
   }
 
   
@@ -22,14 +26,3 @@ const typeDefs = gql`
 
 
 module.exports = typeDefs
-
-// getSingleProduct : String,
-
-// type Product {
-//     productName :String,
-//     productDescription : String,
-//   }
-
-//   type Mutation  {
-//     addProduct(productName:String,productDescription : String) : Product
-//   }

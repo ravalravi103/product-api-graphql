@@ -9,11 +9,7 @@ const resolvers = {
     Mutation : {
     //    Add product
         addProduct : (parent, args) => {
-            let newProduct = new Product({
-                productName : args.productName,
-                productDesc : args.productDesc
-            })  
-
+           let newProduct = new Product({...args})  
            return (
             newProduct.save()
             .then(product => product)
@@ -36,9 +32,12 @@ const resolvers = {
                     Product.findById(args.productId)
                     .then(product => {
                         let oldProduct = product;
-                        oldProduct.productName = args.productName,
-                        oldProduct.productDesc = args.productDesc
-              
+                        oldProduct.productName = args.productName;
+                        oldProduct.productDesc = args.productDesc;
+                        oldProduct.productTags =args.productTags;
+                        oldProduct.productPrice = args.productPrice;
+                        oldProduct.productRating = args.productRating;
+                        oldProduct.categoryId = args.categoryId;
                         let updatedProduct = oldProduct.save()
                         .then(product => {
                             return product
